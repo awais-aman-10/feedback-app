@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import Routes from './Routes.js';
-import { PersistGate } from 'redux-persist/integration/react';
-import factory from './store.js';
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import Routes from './Routes.js'
+import { PersistGate } from 'redux-persist/integration/react'
+import factory from './store.js'
 
-const { store, persistor } = factory();
+const { store, persistor } = factory()
 
 class App extends Component {
   render() {
@@ -18,4 +18,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

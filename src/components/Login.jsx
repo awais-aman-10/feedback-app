@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { Form, Input, Button, Row, Col } from 'antd'
+import { Form, Input, Row, Col } from 'antd'
 import { connect } from 'react-redux'
-import { login } from '../../actions/loginActions'
-import history from '../../RouteHistory'
-import './styles.css'
+import { login } from '../actions/loginActions'
+import history from '../RouteHistory'
 
 const layout = {
     labelCol: {
@@ -12,27 +11,22 @@ const layout = {
     wrapperCol: {
         span: 16,
     },
-};
-const tailLayout = {
-    wrapperCol: {
-        offset: 8,
-        span: 16,
-    },
-};
+}
 
 class Login extends Component {
     componentDidMount = () => {
         if (this.props.loggedInUser && this.props.loggedInUser.email !== undefined) {
-            history.push('/home')
+            history.push('/feedbacks')
         }
     }
+
     onFinish = (values) => {
-        this.props.submitForm(values, this.props.users);
-    };
+        this.props.submitForm(values, this.props.users)
+    }
 
     onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-    };
+        console.log('Failed:', errorInfo)
+    }
 
     render() {
         return (
@@ -73,11 +67,11 @@ class Login extends Component {
                                 <Input.Password placeholder="Password" />
                             </Form.Item>
 
-                            <Form.Item {...tailLayout}>
-                                <Button type="primary" htmlType="submit">
+                            <div className='login-btn-area'>
+                                <button type="primary">
                                     Login
-                                </Button>
-                            </Form.Item>
+                                </button>
+                            </div>
                         </Form>
                     </Col>
                 </Row>
@@ -90,15 +84,15 @@ const mapStateToProps = (state) => {
     return {
         users: state.authReducer.users,
         loggedInUser: state.authReducer.loggedInUser
-    };
-};
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
         submitForm: (formValues, users) => {
             dispatch(login(formValues, users))
         }
-    };
-};
+    }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

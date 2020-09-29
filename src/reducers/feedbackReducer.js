@@ -1,8 +1,8 @@
 import { merge, concat } from 'lodash'
-import * as feedbackConstants from '../constants/feedback.js';
+import * as feedbackConstants from '../constants/feedback.js'
 const initialState = {
     feedbacks: [],
-};
+}
 
 const feedbackReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -10,27 +10,36 @@ const feedbackReducer = (state = initialState, action) => {
             return {
                 ...state,
                 feedbacks: []
-            };
+            }
 
         case feedbackConstants.GET_FEEDBACKS_SUCCESS:
             return {
                 ...state,
                 feedbacks: merge({}, state.searchedBreed, action.payload)
-            };
+            }
 
         case feedbackConstants.GET_FEEDBACKS_ERROR:
             return {
                 ...state,
                 feedbacks: []
-            };
+            }
         case feedbackConstants.SUBMIT_FEEDBACK:
             return {
                 ...state,
                 feedbacks: concat(state.feedbacks, action.payload)
-            };
-        default:
-            return state;
-    }
-};
+            }
+        case feedbackConstants.UPDATE_FEEDBACK_STATUS:
+            let filteredResult = state.feedbacks.filter((item) => item.id === action.payload.feedbackId)[0]
+            filteredResult.status = action.payload.status
 
-export default feedbackReducer;
+            let resultedArray = state.feedbacks.map(item => item.id === filteredResult.id ? filteredResult : item)
+            return {
+                ...state,
+                feedbacks: resultedArray
+            }
+        default:
+            return state
+    }
+}
+
+export default feedbackReducer

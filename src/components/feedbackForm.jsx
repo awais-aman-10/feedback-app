@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Editor } from '@tinymce/tinymce-react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Editor } from '@tinymce/tinymce-react'
 import { submitForm } from '../actions/feedbackActions'
-import { Form, Button, Input } from 'antd'
-import '../styles.css';
+import { Form, Input } from 'antd'
 
 class FeedbackForm extends Component {
   constructor(props) {
-    super(props);
-    this.state = { content: "" };
+    super(props)
+    this.state = { content: "" }
   }
 
-  formRef = React.createRef();
+  formRef = React.createRef()
   handleChange = (event) => {
-    this.setState({ content: event });
+    this.setState({ content: event })
   }
 
   handleSubmit = (values) => {
@@ -21,7 +20,7 @@ class FeedbackForm extends Component {
       id: this.props.feedbacks.length + 1,
       content: this.state.content,
       username: this.props.loggedInUser && this.props.loggedInUser.name,
-      status: 'pending',
+      status: 'Pending',
       title: values.title
     }
     this.props.submitForm(data)
@@ -29,7 +28,6 @@ class FeedbackForm extends Component {
   }
 
   render() {
-    console.log(this.props.feedbacks)
     return (
       <div>
         <Form
@@ -70,12 +68,12 @@ class FeedbackForm extends Component {
 
           <br />
           <Form.Item >
-            <Button type="primary" htmlType="submit">
+            <button className='form-submit' type="primary">
               Submit
-            </Button>
+            </button>
           </Form.Item>
         </Form>
-      </div >
+      </div>
     )
   }
 }
@@ -84,15 +82,15 @@ const mapStateToProps = (state) => {
   return {
     feedbacks: state.feedbackReducer.feedbacks,
     loggedInUser: state.authReducer.loggedInUser
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     submitForm: (formValues) => {
       dispatch(submitForm(formValues))
     }
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedbackForm);
+export default connect(mapStateToProps, mapDispatchToProps)(FeedbackForm)

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Home from './components/Home/Home'
-import Login from './components/Login/Login'
+import Home from './components/Home'
+import ReviewFeedback from './containers/reviewFeedback'
+import Login from './components/Login'
 import history from './RouteHistory'
 
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
@@ -25,7 +26,16 @@ class Routes extends Component {
                     <Route exact path='/'
                         component={(props) => <Login {...props} {...props.location.state} />}
                     />
-                    <PrivateRoute authed={this.props.loggedInUser && this.props.loggedInUser.email !== undefined } path='/home' component={(props) => <Home {...props} {...props.location.state} />} />
+                    <PrivateRoute
+                        authed={this.props.loggedInUser && this.props.loggedInUser.email !== undefined }
+                        path='/feedbacks'
+                        component={(props) => <Home {...props} {...props.location.state} />}
+                    />
+                    <PrivateRoute
+                        authed={this.props.loggedInUser && this.props.loggedInUser.email !== undefined }
+                        path='/feedback/:feedback_id'
+                        component={(props) => <ReviewFeedback {...props} {...props.location.state} />}
+                    />
                     <Redirect to='/' />
                 </Switch>
             </Router>
@@ -36,7 +46,7 @@ class Routes extends Component {
 const mapStateToProps = (state) => {
     return {
         loggedInUser: state.authReducer.loggedInUser
-    };
-};
+    }
+}
 
-export default connect(mapStateToProps, null)(Routes);
+export default connect(mapStateToProps, null)(Routes)

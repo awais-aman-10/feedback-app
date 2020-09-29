@@ -1,4 +1,4 @@
-import * as loginConstants from '../constants/auth.js';
+import * as loginConstants from '../constants/auth.js'
 
 const initialState = {
     users: [
@@ -22,7 +22,7 @@ const initialState = {
         }
     ],
     loggedInUser: {}
-};
+}
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -30,15 +30,15 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedInUser: action.payload
-            };
+            }
         case loginConstants.LOGIN_ERROR:
             return {
                 ...state,
                 loggedInUser: {}
-            };
+            }
         default:
-            return state;
+            return state
     }
-};
+}
 
-export default authReducer;
+export default authReducer

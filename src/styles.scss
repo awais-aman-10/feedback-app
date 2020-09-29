@@ -1,0 +1,96 @@
+.feedback-table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  width: 100%;
+  td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+}
+
+.page-layout {
+  padding: 24px;
+}
+
+.site-layout-background {
+  background: #fff;
+  padding: 24px;
+  margin: 0;
+}
+
+.full-height {
+  height: 100vh;
+  background-image: linear-gradient(140deg, #189001 -12%, #1890ff 80%);
+  .bordered {
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 30px;
+    background: white;
+    box-shadow: 6px 6px 40px -4px rgba(0, 0, 0, 0.65);
+  }
+}
+
+.header {
+  .logo {
+    width: 120px;
+    height: 31px;
+    margin: 0px 30px 16px 0;
+    float: left;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+  }
+
+  .logout-btn {
+    float: right;
+    padding: 10px 10px;
+    margin: 10px 0px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.input-field {
+  margin-bottom: 20px !important;
+}
+
+.btn-area {
+  margin-top: 20px;
+  .reject-btn {
+    background: #d9534f;
+    float: right;
+    border-color: #d9534f;
+  }
+  .approve-btn {
+    background: #5cb85c;
+    float: right;
+    border-color: #5cb85c;
+  }
+  .btn, .btn:hover {
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    margin-left: 10px;
+    border-width: 1px;
+  }
+}
+
+.login-btn-area {
+  text-align: center;
+  button {
+    padding: 5px 10px;
+    background: #199154;
+    border: #199154;
+    border-radius: 5px;
+    color: #fff;
+  }
+}
+
+.form-submit {
+  background: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 8px;
+}
