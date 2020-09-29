@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+
 import FeedbackTable from '../components/feedbackTable'
 
-class FeedbackList extends Component {
-
+class FeedbackList extends PureComponent {
   render() {
     const { feedbacks } = this.props
     return (
@@ -14,10 +14,8 @@ class FeedbackList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = state => ({
     feedbacks: state.feedbackReducer.feedbacks
-  }
-}
+})
 
-export default connect(mapStateToProps, null)(FeedbackList)
+export default connect(mapStateToProps)(FeedbackList)

@@ -1,21 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
-import Routes from './Routes.js'
 import { PersistGate } from 'redux-persist/integration/react'
+
+import Routes from './Routes.js'
 import factory from './store.js'
 
 const { store, persistor } = factory()
 
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
+export default () => (
+    <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <Routes />
+            <Routes />
         </PersistGate>
-      </Provider>
-    )
-  }
-}
-
-export default App
+    </Provider>
+)

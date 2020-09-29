@@ -3,21 +3,21 @@ import * as loginConstants from '../constants/auth.js'
 const initialState = {
     users: [
         {
-            email: 'awais@gmail.com',
-            password: 'awais123',
-            name: 'Awais',
+            email: 'manager@gmail.com',
+            password: 'manager1234',
+            name: 'John Manager',
             role: 'manager'
         },
         {
-            email: 'aman@gmail.com',
-            password: 'aman123',
-            name: 'Aman',
+            email: 'user@gmail.com',
+            password: 'user1234',
+            name: 'Tom User',
             role: 'user'
         },
         {
-            email: 'John@gmail.com',
-            password: 'john123',
-            name: 'John',
+            email: 'user2@gmail.com',
+            password: 'user1234',
+            name: 'John User',
             role: 'user'
         }
     ],

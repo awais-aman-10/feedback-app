@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+
 import PageLayout from './pageLayout'
 import FeedbackForm from './feedbackForm'
-import FeedbackList from '../containers/feedbackList'
+import FeedbackList from './feedbackList'
 
-class Home extends Component {
-
+class Home extends PureComponent {
     render() {
         const { loggedInUser } = this.props
         return (
@@ -21,10 +21,8 @@ class Home extends Component {
 }
 
 
-const mapStateToProps = (state) => {
-    return {
-        loggedInUser: state.authReducer.loggedInUser
-    }
-}
+const mapStateToProps = state => ({
+    loggedInUser: state.authReducer.loggedInUser
+})
 
-export default connect(mapStateToProps, null)(Home)
+export default connect(mapStateToProps)(Home)

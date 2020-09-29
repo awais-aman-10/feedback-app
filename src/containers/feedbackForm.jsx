@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Editor } from '@tinymce/tinymce-react'
-import { submitForm } from '../actions/feedbackActions'
 import { Form, Input } from 'antd'
 
+import { submitForm } from '../actions/feedbackActions'
+
 class FeedbackForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { content: "" }
+  state = {
+    content: ''
   }
 
   formRef = React.createRef()
-  handleChange = (event) => {
-    this.setState({ content: event })
+  handleChange = content => {
+    this.setState({ content: content })
   }
 
-  handleSubmit = (values) => {
+  handleSubmit = values => {
     let data = {
       id: this.props.feedbacks.length + 1,
       content: this.state.content,
@@ -37,7 +37,7 @@ class FeedbackForm extends Component {
           <h2>Submit feedback</h2>
           <h4>Provide a detailed feedback</h4>
           <Form.Item
-            name="title"
+            name='title'
             rules={[
               {
                 required: true,
@@ -45,10 +45,10 @@ class FeedbackForm extends Component {
               },
             ]}
           >
-            <Input placeholder="Enter title here" />
+            <Input placeholder='Enter title here' />
           </Form.Item>
           <Form.Item
-            name="content"
+            name='content'
             rules={[
               {
                 required: true,
@@ -68,7 +68,7 @@ class FeedbackForm extends Component {
 
           <br />
           <Form.Item >
-            <button className='form-submit' type="primary">
+            <button className='form-submit' type='primary'>
               Submit
             </button>
           </Form.Item>
@@ -78,19 +78,15 @@ class FeedbackForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    feedbacks: state.feedbackReducer.feedbacks,
-    loggedInUser: state.authReducer.loggedInUser
-  }
-}
+const mapStateToProps = state => ({
+  feedbacks: state.feedbackReducer.feedbacks,
+  loggedInUser: state.authReducer.loggedInUser
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
     submitForm: (formValues) => {
       dispatch(submitForm(formValues))
     }
-  }
-}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeedbackForm)

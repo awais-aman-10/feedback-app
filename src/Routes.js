@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Home from './components/Home'
+
+import Home from './containers/Home'
 import ReviewFeedback from './containers/reviewFeedback'
-import Login from './components/Login'
+import Login from './containers/Login'
 import history from './RouteHistory'
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => {
-    return (
-        <Route
-            {...rest}
-            render={(props) => authed === true
-                ? <Component {...props} />
-                : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
-        />
-    )
-}
+const PrivateRoute = ({ component: Component, authed, ...rest }) => (
+    <Route
+        {...rest}
+        render={(props) => authed === true
+            ? <Component {...props} />
+            : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
+    />
+)
 
 
 class Routes extends Component {
@@ -43,10 +42,8 @@ class Routes extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        loggedInUser: state.authReducer.loggedInUser
-    }
-}
+const mapStateToProps = state => ({
+    loggedInUser: state.authReducer.loggedInUser
+})
 
-export default connect(mapStateToProps, null)(Routes)
+export default connect(mapStateToProps)(Routes)
