@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Editor } from "@tinymce/tinymce-react";
+import Routes from './Routes.js';
+import { PersistGate } from 'redux-persist/integration/react';
+import factory from './store.js';
 
-import projectStore from './store.js';
-import FeedbackForm from './components/feedbackForm'
-import './styles.css';
+const { store, persistor } = factory();
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { content: "" };
-  }
-
-  render () {
+  render() {
     return (
-      <Provider store={projectStore}>
-        <FeedbackForm />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Routes />
+        </PersistGate>
       </Provider>
     )
   }

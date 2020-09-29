@@ -1,0 +1,16 @@
+.logo {
+  width: 120px;
+  height: 31px;
+  margin: 0px 30px 16px 0;
+  float: left;
+  color: white;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.logout-btn {
+  float: right;
+  margin: 16px 10px;
+  background-color: white !important;
+  color: black !important;
+}

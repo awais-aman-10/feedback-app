@@ -1,5 +1,5 @@
+import { merge, concat } from 'lodash'
 import * as feedbackConstants from '../constants/feedback.js';
-
 const initialState = {
     feedbacks: [],
 };
@@ -15,7 +15,7 @@ const feedbackReducer = (state = initialState, action) => {
         case feedbackConstants.GET_FEEDBACKS_SUCCESS:
             return {
                 ...state,
-                feedbacks: action.payload
+                feedbacks: merge({}, state.searchedBreed, action.payload)
             };
 
         case feedbackConstants.GET_FEEDBACKS_ERROR:
@@ -24,10 +24,9 @@ const feedbackReducer = (state = initialState, action) => {
                 feedbacks: []
             };
         case feedbackConstants.SUBMIT_FEEDBACK:
-            console.log('in reducer js', action.payload)
             return {
                 ...state,
-                feedbacks: state.feedbacks.push(action.payload)
+                feedbacks: concat(state.feedbacks, action.payload)
             };
         default:
             return state;
