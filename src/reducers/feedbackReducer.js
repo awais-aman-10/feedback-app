@@ -1,27 +1,33 @@
-import * as organizationActionsConstants from '../constants/feedback.js';
+import * as feedbackConstants from '../constants/feedback.js';
 
 const initialState = {
-    feedback: [],
+    feedbacks: [],
 };
 
 const feedbackReducer = (state = initialState, action) => {
     switch (action.type) {
-        case organizationActionsConstants.GET_FEEDBACKS:
+        case feedbackConstants.GET_FEEDBACKS:
             return {
                 ...state,
-                feedback: []
+                feedbacks: []
             };
 
-        case organizationActionsConstants.GET_FEEDBACKS_SUCCESS:
+        case feedbackConstants.GET_FEEDBACKS_SUCCESS:
             return {
                 ...state,
-                feedback: action.payload
+                feedbacks: action.payload
             };
 
-        case organizationActionsConstants.GET_FEEDBACKS_ERROR:
+        case feedbackConstants.GET_FEEDBACKS_ERROR:
             return {
                 ...state,
-                feedback: []
+                feedbacks: []
+            };
+        case feedbackConstants.SUBMIT_FEEDBACK:
+            console.log('in reducer js', action.payload)
+            return {
+                ...state,
+                feedbacks: state.feedbacks.push(action.payload)
             };
         default:
             return state;
